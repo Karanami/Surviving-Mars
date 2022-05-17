@@ -1,3 +1,5 @@
+#pragma once
+
 ///classes
 
 #define property(type, name)										\
@@ -6,7 +8,7 @@
 		public:														\
 		inline void set##name(type name) { this->name = name; }		\
 		inline type get##name() { return this->name; }	
-#define readonly __readonly
+//#define readonly __readonly
 
 ///logic
 
@@ -22,3 +24,7 @@
 //pointers
 
 #define ref &
+
+//math
+
+#define sq(x) ((x)*(x))

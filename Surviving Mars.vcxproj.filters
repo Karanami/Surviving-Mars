@@ -31,6 +31,12 @@
     <Filter Include="Pliki źródłowe\MapUtils">
       <UniqueIdentifier>{4bbe468d-d203-4f43-b017-900560625eea}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Pliki źródłowe\Utils">
+      <UniqueIdentifier>{f609d8f7-0cf4-441e-a231-cd02d2b884cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\Utils\inl">
+      <UniqueIdentifier>{9a0da9a3-1f26-42b6-b32e-3eae34b01b7c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Surviving Mars.cpp">
@@ -44,6 +50,24 @@
     </ClCompile>
     <ClCompile Include="engine\Entities\BasicEntity.cpp">
       <Filter>Pliki źródłowe\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\Utils\Interfaces.cpp">
+      <Filter>Pliki źródłowe\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\Utils\functions.cpp">
+      <Filter>Pliki źródłowe\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\Utils\EntityBase.cpp">
+      <Filter>Pliki źródłowe\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\Utils\DrawableBase.cpp">
+      <Filter>Pliki źródłowe\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\PhysicsHandlers\CollisionHandler.cpp">
+      <Filter>Pliki źródłowe\PhysicsHandlers</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\Utils\Shapes.cpp">
+      <Filter>Pliki źródłowe\Utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -65,5 +89,10 @@
     <ClInclude Include="engine\Defines.hpp">
       <Filter>Pliki nagłówkowe\engine</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="engine\Utils\inl\EntityBase.inl">
+      <Filter>Pliki źródłowe\Utils\inl</Filter>
+    </None>
   </ItemGroup>
 </Project>
