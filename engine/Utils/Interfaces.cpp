@@ -2,7 +2,7 @@
 
 using namespace sf;
 using namespace std;
-using namespace Utils;
+using namespace utils;
 
 void CollisionBase::addResolveVector(Vector2f vec)
 {

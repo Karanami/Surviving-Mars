@@ -8,13 +8,20 @@
 
 #include "Defines.hpp"
 
-namespace Utils
+namespace utils
 {
-	sf::Vector2f normalised(const sf::Vector2f&);
-	sf::Vector2f dcross(const sf::Vector2f&, const sf::Vector2f&);
+	sf::Vector2f normalised(sf::Vector2f);
+	sf::Vector2f dcross(sf::Vector2f, sf::Vector2f);
 
-	float dot(const sf::Vector2f&, const sf::Vector2f&);
-	float qrsqrt(float);
+	float dot(sf::Vector2f, sf::Vector2f);
+	float qsqrt(float);
+
+	enum class CollsionPriority
+	{
+		Moveable,
+		Entities,
+		Unmoveable
+	};
 
 	class ShapeBase
 	{
@@ -42,13 +49,15 @@ namespace Utils
 		public:
 			ShapeBase* int_shape;
 
+			virtual ~InteractionBase();
+
 		protected:
 	};
 
 	class CollisionBase
 	{
 		public:
-			bool moveable = false;
+			//bool moveable = false;
 
 			ShapeBase* col_shape;
 
@@ -62,33 +71,32 @@ namespace Utils
 			sf::Vector2f resolve_vector;
 	};
 
-	class DrawableBase
+	class DrawableBase : public sf::Sprite 
 	{
 		public:
-			sf::Vector3f position;
+			sf::Vector3f getPosition3d();
+			void setPosition3d(sf::Vector3f);
+			void setPosition3d(float, float, float);
+			void setPosition3d(sf::Vector2f, float);
 
-			float r_sq = 0.f;
+			uint64_t getSafeProximitySq();
 
-			virtual sf::Drawable* getDrawable();
-
-			virtual ~DrawableBase();
+		protected:
+			float z;
+			uint64_t safe_proximity = 10;
 	};
 
 	class EntityBase : public CollisionBase, public InteractionBase, public DrawableBase
 	{
 		public:
-			EntityBase(sf::Drawable* drawable);
+			EntityBase();
 
 			float mass = 1.f;
 			float velocity = 0.f;
 
-
-			sf::Drawable* getDrawable() override;
-
-			~EntityBase();
+			sf::Vector2f direction;
 
 		protected:
-			sf::Drawable* drawable;
 	};
 
 	class AnimatedEntityBase : public EntityBase
@@ -96,13 +104,13 @@ namespace Utils
 		public:
 			//AnimatedEntityBase();
 
-			void addAnimation(string name, vector< sf::Vector2i > *animation);
-			void removeAnimation(string name);
+			void addAnimation(std::string name, std::vector< sf::Vector2i > *animation);
+			void removeAnimation(std::string name);
 
 		protected:
 			//vector < vector < Vector2i > > animations;
-			map < string, vector < sf::Vector2i > > animations;
+			std::map < std::string, std::vector < sf::Vector2i > > animations;
 	};
 }
 
-#include "Utils/inl/EntityBase.inl"
+#include "utils/inl/EntityBase.inl"

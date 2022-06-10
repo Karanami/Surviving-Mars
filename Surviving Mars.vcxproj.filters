@@ -37,6 +37,9 @@
     <Filter Include="Pliki źródłowe\Utils\inl">
       <UniqueIdentifier>{9a0da9a3-1f26-42b6-b32e-3eae34b01b7c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Pliki źródłowe\Game">
+      <UniqueIdentifier>{bd9b91f2-eac6-49f5-a300-f0b8954187f7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Surviving Mars.cpp">
@@ -69,6 +72,12 @@
     <ClCompile Include="engine\Utils\Shapes.cpp">
       <Filter>Pliki źródłowe\Utils</Filter>
     </ClCompile>
+    <ClCompile Include="engine\Game\Game.cpp">
+      <Filter>Pliki źródłowe\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\Game\TitleScreen.cpp">
+      <Filter>Pliki źródłowe\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="engine\DrawingHandlers.hpp">
@@ -87,6 +96,9 @@
       <Filter>Pliki nagłówkowe\engine</Filter>
     </ClInclude>
     <ClInclude Include="engine\Defines.hpp">
+      <Filter>Pliki nagłówkowe\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\Game.hpp">
       <Filter>Pliki nagłówkowe\engine</Filter>
     </ClInclude>
   </ItemGroup>

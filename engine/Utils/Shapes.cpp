@@ -1,6 +1,6 @@
 #include "../Utils.hpp"
 
-using namespace Utils;
+using namespace utils;
 
 sf::Vector2f Circle::getClosestVertex(sf::Vector2f vec)
 {
@@ -14,17 +14,17 @@ sf::Vector2f Circle::getCenter()
 
 sf::Vector2f Convex::getClosestVertex(sf::Vector2f vec)
 {
-	int num = this->getPointCount();
+	size_t num = this->getPointCount();
 
 	float max = -INFINITY;
 	
 	sf::Vector2f max_vex;
 
 //#pragma omp simd
-	for(int i = 0; i < num; i++)
+	for(size_t i = 0; i < num; i++)
 	{
 		sf::Vector2f buff_vex = this->getPoint(i);
-		float buff_dot = Utils::dot(normalised(vec), normalised(buff_vex));
+		float buff_dot = dot(normalised(vec), normalised(buff_vex));
 		if (buff_dot > max)
 		{
 			max = buff_dot;

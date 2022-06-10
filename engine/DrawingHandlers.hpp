@@ -7,16 +7,16 @@
 
 #include "Utils.hpp"
 
-namespace DrawingHandlers
+namespace utils
 {
 	class DrawingHandler
 	{
 		public:
 			DrawingHandler(sf::RenderWindow *window);
 
-			void addSprite(Utils::DrawableBase *sprite);
-			void removeSprite(Utils::DrawableBase *sprite);
-			void update(float t);
+			void addSprite(utils::DrawableBase *sprite);
+			void removeSprite(utils::DrawableBase *sprite);
+			void update(float dt);
 			void setTargetedFps(float fps);
 
 			float getFps();
@@ -33,11 +33,10 @@ namespace DrawingHandlers
 			/// sample sprites for draw ( to include them for draw if in
 			/// window's proximity )
 			/// </summary>
-			float safe_window = 500.f;
-			float window_r_sq = 0.f;
+			uint64_t window_render_proximity = 500;
 
-			std::vector < Utils::DrawableBase* > pool;
-			std::vector < Utils::DrawableBase* > drawing_pool;
+			std::vector < utils::DrawableBase* > pool;
+			std::vector < utils::DrawableBase* > drawing_pool;
 
 			sf::RenderWindow *window;
 	};

@@ -1,7 +1,8 @@
 #include "../Utils.hpp"
 
-float Utils::qrsqrt(float number)
+float utils::qsqrt(float number)
 {
+    // DOOM's quick sqrt function, see 
     long i;
     float x, y;
     const float threehalfs = 1.5F;
@@ -16,25 +17,25 @@ float Utils::qrsqrt(float number)
     return y;
 }
 
-sf::Vector2f Utils::normalised(const sf::Vector2f &vec)
+sf::Vector2f utils::normalised(const sf::Vector2f vec)
 {
-	float t = qrsqrt(sq(vec.x) + sq(vec.y));
+	float t = qsqrt(sq(vec.x) + sq(vec.y));
     return { vec.x * t, vec.y * t };
 }
 
-inline sf::Vector2f Utils::dcross(const sf::Vector2f& a, const sf::Vector2f& b)
+sf::Vector2f utils::dcross(const sf::Vector2f a, const sf::Vector2f b)
 {
     float z = a.x * b.y - b.x * a.y;
     return { a.y * z, - (a.x * z) };
 }
 
-//sf::Vector2f Utils::normdcross(const sf::Vector2f& a, const sf::Vector2f& b)
+//sf::Vector2f utils::normdcross(const sf::Vector2f& a, const sf::Vector2f& b)
 //{
 //    float z = a.x * b.y - b.x * a.y;
 //    return normalised({ a.y * z, -(a.x * z) });
 //}
 
-inline float Utils::dot(const sf::Vector2f& vec1, const sf::Vector2f& vec2)
+float utils::dot(const sf::Vector2f vec1, const sf::Vector2f vec2)
 {
 	return vec1.x * vec2.y + vec1.y * vec2.x;
 }

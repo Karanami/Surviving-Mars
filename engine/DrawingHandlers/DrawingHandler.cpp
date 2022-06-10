@@ -2,30 +2,27 @@
 
 #include "../DrawingHandlers.hpp"
 
-using namespace DrawingHandlers;
-
 //-------------------------------------------------------------------------------------------------//
 
-inline static float getDistanceSq(Utils::DrawableBase *d_b, sf::Vector2i &window_pos)
+static uint64_t getDistanceSq(utils::DrawableBase *d_b, sf::Vector2i &window_pos)
 {
-	return sq(window_pos.x - d_b->position.x - d_b->position.z) + sq(window_pos.y - d_b->position.y);
+	return sq(uint64_t(window_pos.x) - uint64_t(d_b->getPosition3d().x) - uint64_t(d_b->getPosition3d().z)) + sq(uint64_t(window_pos.y) - uint64_t(d_b->getPosition3d().y));
 }
 
-DrawingHandler::DrawingHandler(sf::RenderWindow *window)
+utils::DrawingHandler::DrawingHandler(sf::RenderWindow *window)
 {
 	this->window = window;
-	window_r_sq = sq(sqrt(sq(window->getSize().x / 2.f) + sq(window->getSize().y / 2.f)) + safe_window);
 }
 
-void DrawingHandler::addSprite(Utils::DrawableBase *sprite)
+void utils::DrawingHandler::addSprite(utils::DrawableBase *sprite)
 {
 	pool.emplace_back(sprite);
 }
 
-void DrawingHandler::removeSprite(Utils::DrawableBase *sprite)
+void utils::DrawingHandler::removeSprite(utils::DrawableBase *sprite)
 {
 #pragma omp simd
-	for (std::vector < Utils::DrawableBase* >::const_iterator s = pool.begin(); s != pool.end(); s++)
+	for (std::vector < utils::DrawableBase* >::const_iterator s = pool.begin(); s != pool.end(); s++)
 	{
 		if (*s == sprite)
 		{
@@ -35,42 +32,42 @@ void DrawingHandler::removeSprite(Utils::DrawableBase *sprite)
 	}
 }
 
-void DrawingHandler::update(float t)
+void utils::DrawingHandler::update(float dt)
 {
-	accumulator_t += t;
+	accumulator_t += dt;
 
 	/// drawing sampling
 	sf::Vector2i window_pos = window->getPosition();
 #pragma omp simd
-	foreach (auto draw_base in pool)
+	for (auto draw_base : pool)
 	{
-		if (draw_base->r_sq + window_r_sq > getDistanceSq(draw_base, window_pos))
+		if (draw_base->getSafeProximitySq() + sq(this->window_render_proximity) > getDistanceSq(draw_base, window_pos))
 		{
 			drawing_pool.emplace_back(draw_base);
 		}
 	}
 
-	sort(drawing_pool.begin(), drawing_pool.end(), [](Utils::DrawableBase* elem1, Utils::DrawableBase* elem2) -> bool
+	sort(drawing_pool.begin(), drawing_pool.end(), [](utils::DrawableBase* elem1, utils::DrawableBase* elem2) -> bool
 	{
-		return elem1->position.y > elem2->position.y;
+		return elem1->getPosition3d().y > elem2->getPosition3d().y;
 	});
 
 	window->clear();
 
 	while (drawing_pool.size() > 0)
 	{
-		window->draw(*drawing_pool.back()->getDrawable());
+		window->draw(*drawing_pool.back());
 		drawing_pool.pop_back();
 	}
 	window->display();
 }
 
-inline void DrawingHandler::setTargetedFps(float fps)
+void utils::DrawingHandler::setTargetedFps(float fps)
 {
 	targeted_spf = 1 / fps;
 }
 
-inline float DrawingHandler::getFps()
+float utils::DrawingHandler::getFps()
 {
 	return fps;
 }

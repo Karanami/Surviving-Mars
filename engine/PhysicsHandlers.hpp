@@ -8,20 +8,16 @@
 #include "Utils.hpp"
 #include "Defines.hpp"
 
-namespace PhysicsHandlers
+namespace utils
 {
-	using namespace sf;
-	using namespace std;
-	using namespace Utils;
-
 	class CollisionHandler
 	{
 		public:
-			void addEntity(Utils::CollisionBase*shape);
-			void removeEntity(Utils::CollisionBase*shape);
+			void addEntity(utils::CollisionBase*shape);
+			void removeEntity(utils::CollisionBase*shape);
 			void update(float t);
 		
 		protected:
-			vector < Utils::CollisionBase* > pool;
+			std::vector < utils::CollisionBase* > pool;
 	};
 }
