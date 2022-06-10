@@ -1,8 +1,8 @@
-*.obj
-*.zip
-x64*
-Debug*
-*.log
-*.ilk
-*.pdb
-*.exe
+.obj
+.zip
+x64
+Debug
+.log
+.ilk
+.pdb
+.exe
