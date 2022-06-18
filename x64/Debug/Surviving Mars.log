@@ -1,2 +1,15 @@
-﻿  Surviving Mars.cpp
-  Surviving Mars.vcxproj -> C:\Users\user\Desktop\szkoła\studia\psio\projekt\Surviving Mars\x64\Debug\Surviving Mars.exe
+﻿  AnimationHandler.cpp
+  DrawingHandler.cpp
+  BasicEntity.cpp
+  CollisionHandler.cpp
+  DrawableBase.cpp
+  EntityBase.cpp
+  functions.cpp
+  Interfaces.cpp
+  Shapes.cpp
+  Game.cpp
+  TitleScreen.cpp
+  View.cpp
+  Surviving Mars.cpp
+  Generowanie kodu...
+  Surviving Mars.vcxproj -> C:\Users\user\Desktop\szkoła\studia\sem 2\psio\projekt\Surviving Mars\x64\Debug\Surviving Mars.exe

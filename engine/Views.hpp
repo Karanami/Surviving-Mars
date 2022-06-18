@@ -5,16 +5,34 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 
+#include "DrawingHandlers.hpp"
+#include "EntitiesHandlers.hpp"
+#include "PhysicsHandlers.hpp"
+#include "MapUtils.hpp"
+#include "Utils.hpp"
+
 namespace utils
 {
     class View
     {
         public:
+            View(sf::RenderWindow*);
+
+            DrawingHandler* draw_handler;
+
+            CollisionHandler* coll_handler;
+
+            sf::Clock clock;
+
+            std::vector<sf::Texture*> resources_tex;
+            std::vector<sf::Sprite*> resources_spr;
+
             virtual void loadTextures();
             virtual void init();
             virtual void handle();
             virtual void handleEvents();
-            virtual ~View() = 0;
+
+            virtual ~View();
     };
      
     class Game : public View
@@ -32,14 +50,12 @@ namespace utils
 
             void initSprites();
             void initMap();
-            void handle();
-            void handleEvents();
+
+            ~Game();
 
         private:
             sf::Texture* test;
 
             sf::Sprite* testSprite;
-
-            std::vector<sf::Texture*> resources;
     };
 }

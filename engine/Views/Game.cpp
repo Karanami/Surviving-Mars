@@ -1,6 +1,4 @@
-#include "../Game.hpp"
-#include "../Utils.hpp"
-#include "../MapUtils.hpp"
+#include "../Views.hpp"
 
 const std::string path_to_texture_folder = "../../textures/";
 
@@ -9,8 +7,8 @@ static std::string getTexturePath(const std::string texture)
 	return path_to_texture_folder + texture;
 }
 
-utils::Game::Game() : window(new sf::RenderWindow(sf::VideoMode(800, 600), "---")) { };
-utils::Game::Game(sf::RenderWindow* window) : window(window) { };
+utils::Game::Game() : window(new sf::RenderWindow(sf::VideoMode(800, 600), "---")), View(this->window) { };
+utils::Game::Game(sf::RenderWindow* window) : window(window), View(window) { };
 
 void utils::Game::loadTextures()
 {
@@ -19,11 +17,17 @@ void utils::Game::loadTextures()
 
 void utils::Game::init()
 {
-	this->testSprite->setTexture(*this->test);
+	this->loadTextures();
+	this->initSprites();
+	this->initMap();
 }
 
 void utils::Game::handle()
 {
+	float dt = this->clock.getElapsedTime().asSeconds();
+	this->clock.restart();
+	this->coll_handler->update(dt);
+	this->draw_handler->update(dt);
 	this->window->draw(*this->testSprite);
 }
 
@@ -38,20 +42,12 @@ void utils::Game::handleEvents()
 
 void utils::Game::initSprites()
 {
-
+	this->testSprite->setTexture(*this->test);
 }
 
 void utils::Game::initMap()
 {
-
+	return;
 }
 
-void utils::Game::handle()
-{
-
-}
-
-void utils::Game::handleEvents()
-{
-
-}
+utils::Game::~Game() { };

@@ -14,15 +14,15 @@ utils::DrawingHandler::DrawingHandler(sf::RenderWindow *window)
 	this->window = window;
 }
 
-void utils::DrawingHandler::addSprite(utils::DrawableBase *sprite)
+void utils::DrawingHandler::add(utils::DrawableBase *sprite)
 {
 	pool.emplace_back(sprite);
 }
 
-void utils::DrawingHandler::removeSprite(utils::DrawableBase *sprite)
+void utils::DrawingHandler::remove(utils::DrawableBase *sprite)
 {
 #pragma omp simd
-	for (std::vector < utils::DrawableBase* >::const_iterator s = pool.begin(); s != pool.end(); s++)
+	for (auto s = pool.begin(); s != pool.end(); s++)
 	{
 		if (*s == sprite)
 		{
@@ -53,7 +53,6 @@ void utils::DrawingHandler::update(float dt)
 	});
 
 	window->clear();
-
 	while (drawing_pool.size() > 0)
 	{
 		window->draw(*drawing_pool.back());

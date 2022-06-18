@@ -74,6 +74,8 @@ namespace utils
 	class DrawableBase : public sf::Sprite 
 	{
 		public:
+			bool draw;
+
 			sf::Vector3f getPosition3d();
 			void setPosition3d(sf::Vector3f);
 			void setPosition3d(float, float, float);
@@ -112,5 +114,3 @@ namespace utils
 			std::map < std::string, std::vector < sf::Vector2i > > animations;
 	};
 }
-
-#include "utils/inl/EntityBase.inl"

@@ -12,6 +12,7 @@ static std::pair < bool, sf::Vector2f > epa(CollisionBase* a, CollisionBase* b)
 {
 	// gjk
 	int check_case = 2;
+	bool run_gjk = true;
 
 	sf::Vector2f dir_vec = b->col_shape->getCenter() - a->col_shape->getCenter();
 
@@ -21,7 +22,7 @@ static std::pair < bool, sf::Vector2f > epa(CollisionBase* a, CollisionBase* b)
 	dir_vec = -vexs[0];
 	vexs[0] = a->col_shape->getClosestVertex(dir_vec) - b->col_shape->getClosestVertex(-dir_vec);
 
-	while (true)
+	while (run_gjk)
 	{
 		sf::Vector2f buff;
 		switch (check_case)
@@ -62,6 +63,7 @@ static std::pair < bool, sf::Vector2f > epa(CollisionBase* a, CollisionBase* b)
 					}
 					else
 					{
+						run_gjk = false;
 						break;
 					}
 					vexs = { buff, vexs[0], vexs[1] };
@@ -74,12 +76,13 @@ static std::pair < bool, sf::Vector2f > epa(CollisionBase* a, CollisionBase* b)
 				}
 				else
 				{
+					run_gjk = false;
 					break;
 				}
 			} break;
 		}
 		//idk if it works tho;
-		if (dot(buff, dir_vec) <= 0) return std::pair < bool, sf::Vector2f >(false, { 0, 0 });
+		if (dot(buff, dir_vec) <= 0) return { false, { 0, 0 } };
 	}
 
 	//epa
@@ -88,14 +91,21 @@ static std::pair < bool, sf::Vector2f > epa(CollisionBase* a, CollisionBase* b)
 
 //-------------------------------------------------------------------------------------------------//
 
-void CollisionHandler::addEntity(CollisionBase*shape)
+void CollisionHandler::addEntity(CollisionBase* shape)
 {
-
+	this->pool.push_back(shape);
 }
 
 void CollisionHandler::removeEntity(CollisionBase* shape)
 {
-
+	for (auto s = this->pool.begin(); s != this->pool.end(); s++)
+	{
+		if (*s == shape)
+		{
+			this->pool.erase(s);
+			return;
+		}
+	}
 }
 
 void CollisionHandler::update(float dt)

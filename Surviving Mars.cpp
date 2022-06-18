@@ -7,7 +7,7 @@
 #include <string.h>
 
 //#include "engine/DrawingHandlers.hpp"
-#include "engine/Game.hpp"
+#include "engine/Views.hpp"
 
 #pragma warning(disable : 4244)
 
@@ -18,8 +18,6 @@ int main()
 
     sf::RenderWindow window(sf::VideoMode(800, 600), "SFML works!", 7U, settings);
     window.setPosition(sf::Vector2i(400, 300));
-
-    //utils::DrawingHandler drawing_handler(&window);
 
     while (window.isOpen())
     {
@@ -45,14 +43,7 @@ int main()
                 }
             }
         }
-
-        //drawing_handler.update(0.f);
     }
-
-    void loadTextures();
-    void init();
-    void handle();
-    void handleEvents();
 
     return 0;
 }

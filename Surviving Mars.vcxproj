@@ -101,6 +101,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <ShowIncludes>false</ShowIncludes>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -117,6 +118,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <ShowIncludes>false</ShowIncludes>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -133,6 +135,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <ShowIncludes>false</ShowIncludes>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -149,6 +152,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <ShowIncludes>false</ShowIncludes>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -162,27 +166,25 @@
     <ClCompile Include="engine\DrawingHandlers\AnimationHandler.cpp" />
     <ClCompile Include="engine\DrawingHandlers\DrawingHandler.cpp" />
     <ClCompile Include="engine\Entities\BasicEntity.cpp" />
-    <ClCompile Include="engine\Game\Game.cpp" />
-    <ClCompile Include="engine\Game\TitleScreen.cpp" />
     <ClCompile Include="engine\PhysicsHandlers\CollisionHandler.cpp" />
     <ClCompile Include="engine\Utils\DrawableBase.cpp" />
     <ClCompile Include="engine\Utils\EntityBase.cpp" />
     <ClCompile Include="engine\Utils\functions.cpp" />
     <ClCompile Include="engine\Utils\Interfaces.cpp" />
     <ClCompile Include="engine\Utils\Shapes.cpp" />
+    <ClCompile Include="engine\Views\Game.cpp" />
+    <ClCompile Include="engine\Views\TitleScreen.cpp" />
+    <ClCompile Include="engine\Views\View.cpp" />
     <ClCompile Include="Surviving Mars.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="engine\Defines.hpp" />
-    <ClInclude Include="engine\Game.hpp" />
+    <ClInclude Include="engine\Views.hpp" />
     <ClInclude Include="engine\Utils.hpp" />
     <ClInclude Include="engine\MapUtils.hpp" />
     <ClInclude Include="engine\DrawingHandlers.hpp" />
     <ClInclude Include="engine\EntitiesHandlers.hpp" />
     <ClInclude Include="engine\PhysicsHandlers.hpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="engine\Utils\inl\EntityBase.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
